@@ -96,6 +96,18 @@ func (maze *Maze) Successors(ml Location) []Location {
 	return successors
 }
 
+func (maze *Maze) EuclideanDistanceFromGoal(a Location) float64 {
+	dx := a.Row - maze.Goal.Row
+	dy := a.Column - maze.Goal.Column
+	return float64(dx*dx + dy*dy)
+}
+
+func (maze *Maze) ManhattanDistanceFromGoal(a Location) float64 {
+	dx := a.Row - maze.Goal.Row
+	dy := a.Column - maze.Goal.Column
+	return float64(dx + dy)
+}
+
 func (maze *Maze) Mark(path []Location) {
 	for _, loc := range path {
 		maze.grid[loc.Row][loc.Column] = Path

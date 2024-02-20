@@ -18,10 +18,45 @@ func main() {
 	)
 	println(m.String())
 
+	println("---- DFS ----")
+
 	node, err := search.Dfs(
 		m.Start,
 		m.GoalTest,
 		m.Successors,
+	)
+
+	if err != nil {
+		println(err.Error())
+	} else {
+		m.Mark(node.Path())
+		println(m.String())
+		m.Clear(node.Path())
+	}
+
+	println("---- BFS ----")
+
+	node, err = search.Bfs(
+		m.Start,
+		m.GoalTest,
+		m.Successors,
+	)
+
+	if err != nil {
+		println(err.Error())
+	} else {
+		m.Mark(node.Path())
+		println(m.String())
+		m.Clear(node.Path())
+	}
+
+	println("---- A* ----")
+
+	node, err = search.Astar(
+		m.Start,
+		m.GoalTest,
+		m.Successors,
+		m.ManhattanDistanceFromGoal,
 	)
 
 	if err != nil {
