@@ -11,7 +11,7 @@ func comparator[T any](a, b interface{}) int {
 	return a.(*Node[T]).CompareTo(b.(*Node[T]))
 }
 
-func Astar[T any](
+func Astar[T comparable](
 	initial T,
 	goalTest func(T) bool,
 	successors func(T) []T,

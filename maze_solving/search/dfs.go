@@ -7,7 +7,7 @@ import (
 	"github.com/emirpasic/gods/stacks/arraystack"
 )
 
-func Dfs[T any](initial T, goalTest func(T) bool, successors func(T) []T) (*Node[T], error) {
+func Dfs[T comparable](initial T, goalTest func(T) bool, successors func(T) []T) (*Node[T], error) {
 	frontier := arraystack.New()
 	frontier.Push(NewNode(initial, nil))
 

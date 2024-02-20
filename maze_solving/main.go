@@ -4,11 +4,13 @@ import (
 	"math/rand/v2"
 
 	"maze_solving/maze"
+	"maze_solving/missionaries"
 	"maze_solving/search"
 )
 
 func main() {
 	runMazes()
+	runMissionaries()
 }
 
 func runMazes() {
@@ -71,5 +73,25 @@ func runMazes() {
 		m.Mark(node.Path())
 		println(m.String())
 		m.Clear(node.Path())
+	}
+}
+
+func runMissionaries() {
+	println("---- Missionaries ----")
+
+	start := missionaries.NewMCState(3, 3, true)
+
+	println("---- BFS ----")
+
+	node, err := search.Bfs[missionaries.MCState](
+		start,
+		missionaries.GoalTest,
+		missionaries.Successors,
+	)
+
+	if err != nil {
+		println(err.Error())
+	} else {
+		missionaries.DisplaySolution(node.Path())
 	}
 }

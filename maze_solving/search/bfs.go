@@ -7,7 +7,7 @@ import (
 	"github.com/emirpasic/gods/sets/hashset"
 )
 
-func Bfs[T any](initial T, goalTest func(T) bool, successors func(T) []T) (*Node[T], error) {
+func Bfs[T comparable](initial T, goalTest func(T) bool, successors func(T) []T) (*Node[T], error) {
 	frontier := arrayqueue.New()
 	frontier.Enqueue(NewNode(initial, nil))
 
