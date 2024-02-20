@@ -29,9 +29,16 @@ type Maze struct {
 	rows, columns int
 }
 
-var Randomizer rand.Rand
+func MakeMaze(
+	rows, columns int,
+	start, goal Location,
+	sparseness float64,
+	random *rand.Rand,
+) *Maze {
+	if random == nil {
+		random = &rand.Rand{}
+	}
 
-func MakeMaze(rows, columns int, start, goal Location, sparseness float64) *Maze {
 	maze := &Maze{
 		grid:    make([][]Cell, rows),
 		Start:   start,
@@ -52,7 +59,7 @@ func MakeMaze(rows, columns int, start, goal Location, sparseness float64) *Maze
 
 	for r := 0; r < rows; r++ {
 		for c := 0; c < columns; c++ {
-			if Randomizer.Float64() < sparseness {
+			if random.Float64() < sparseness {
 				maze.grid[r][c] = Blocked
 			}
 		}

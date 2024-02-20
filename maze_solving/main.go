@@ -8,13 +8,19 @@ import (
 )
 
 func main() {
-	maze.Randomizer = *rand.New(rand.NewPCG(43, 1024))
+	runMazes()
+}
+
+func runMazes() {
+	println("---- Maze ----")
+
 	m := maze.MakeMaze(
 		10,
 		10,
 		maze.Location{Row: 0, Column: 0},
 		maze.Location{Row: 9, Column: 9},
 		0.2,
+		rand.New(rand.NewPCG(43, 1024)),
 	)
 	println(m.String())
 
