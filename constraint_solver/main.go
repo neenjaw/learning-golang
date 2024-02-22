@@ -4,21 +4,12 @@ import (
 	"constraint_solver/eight_queens"
 	"constraint_solver/map_coloring"
 	"fmt"
-	"slices"
 )
 
 func main() {
 	runMapColoring()
 	runEightQueens()
 
-	a := []int{1, 2, 3, 4, 5}
-	b := slices.Clone(a)
-	fmt.Printf("%v %p\n%v %p\n%v\n", a, &a, b, &b, &a == &b)
-
-	d := slices.DeleteFunc(b, func(i int) bool {
-		return true
-	})
-	fmt.Printf("%v %p\n%v %p\n%v\n", b, &b, d, &d, &b == &d)
 }
 
 func runMapColoring() {
